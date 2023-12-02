@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/javascript.svg" />
+    <title>Mi Página Web</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+        margin: 20px;
+      }
+
+      h1 {
+        color: #4caf50;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      a {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        background-color: #ddd;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .section {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .card {
+        flex: 1;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 10px;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 10px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      @media screen and (max-width: 600px) {
+        body {
+          margin: 10px;
+        }
+
+        .section {
+          flex-direction: column;
+        }
+
+        .card {
+          margin: 10px 0;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bienvenido a Mi Página</h1>
+
+    <p>
+      ¡Hola! Esta es mi primera página web. Aquí encontrarás información
+      interesante.
+    </p>
+    <button id="cambiarColorBtn">Cambiar Color de Fondo</button>
+
+    <h2>Enlaces:</h2>
+    <ul>
+      <li>
+        <a href="https://www.youtube.com/watch?v=SBSI9TkM-PM">Enlace 1</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=WoWvxLKATek">Enlace 2</a>
+      </li>
+    </ul>
+
+    <h2>Lista de la compra:</h2>
+    <ul id="miLista">
+      <li>Cebolla</li>
+      <li>Tomate</li>
+      <li>Cilantro</li>
+    </ul>
+    <h2>Sección con Tarjetas:</h2>
+    <div class="section">
+      <div id="elementoObjetivo" class="card">
+        <h3>Tarjeta 1</h3>
+        <p>Contenido de la tarjeta 1.</p>
+      </div>
+      <div class="card">
+        <h3>Tarjeta 2</h3>
+        <p>Contenido de la tarjeta 2.</p>
+      </div>
+      <div class="card">
+        <h3>Tarjeta 3</h3>
+        <p>Contenido de la tarjeta 3.</p>
+      </div>
+    </div>
+    <h2>Galería de Imágenes:</h2>
+    <div class="gallery">
+      <img src="https://i.imgur.com/anvwHX8.jpeg" alt="Imagen 1" />
+      <img
+        src="https://hips.hearstapps.com/hmg-prod/images/cute-cat-photos-1593441022.jpg?crop=0.670xw:1.00xh;0.167xw,0&resize=640:*"
+        alt="Imagen 2"
+      />
+      <img
+        src="https://hips.hearstapps.com/hmg-prod/images/cute-photos-of-cats-curled-up-sleeping-1593184773.jpg?crop=0.9137115839243499xw:1xh;center,top&resize=980:*"
+        alt="Imagen 3"
+      />
+      <img
+        src="https://hips.hearstapps.com/hmg-prod/images/cute-photos-of-cats-excited-1593184777.jpg?crop=1xw:1xh;center,top&resize=980:*"
+        alt="Imagen 4"
+      />
+      <img
+        src="https://hips.hearstapps.com/hmg-prod/images/cute-photos-of-cats-in-box-1593184776.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=980:*"
+        alt="Imagen 5"
+      />
+    </div>
+    <h2>Formulario</h2>
+
+    <form id="miFormulario">
+      <label for="campoEntrada">Ingrese un dato:</label>
+      <input type="text" id="campoEntrada" name="campoEntrada" required />
+      <button type="submit">Enviar</button>
+    </form>
+
+    <h2>Almacenamiento en el Navegador</h2>
+
+    <label for="datoInput">Ingresa un dato:</label>
+    <input type="text" id="datoInput" />
+
+    <button onclick="guardarLocalStorage()">Guardar en localStorage</button>
+    <button onclick="guardarSessionStorage()">Guardar en sessionStorage</button>
+
+    <button onclick="recuperarLocalStorage()">Recuperar de localStorage</button>
+    <button onclick="recuperarSessionStorage()">
+      Recuperar de sessionStorage
+    </button>
+
+    <script>
+      function guardarLocalStorage() {
+        const dato = document.getElementById("datoInput").value;
+        localStorage.setItem("datoGuardado", dato);
+        alert("Dato guardado en localStorage.");
+      }
+
+      function guardarSessionStorage() {
+        const dato = document.getElementById("datoInput").value;
+        sessionStorage.setItem("datoGuardado", dato);
+        alert("Dato guardado en sessionStorage.");
+      }
+
+      function recuperarLocalStorage() {
+        const datoRecuperado = localStorage.getItem("datoGuardado");
+        if (datoRecuperado) {
+          alert("Dato recuperado de localStorage: " + datoRecuperado);
+        } else {
+          alert("No hay dato almacenado en localStorage.");
+        }
+      }
+
+      function recuperarSessionStorage() {
+        const datoRecuperado = sessionStorage.getItem("datoGuardado");
+        if (datoRecuperado) {
+          alert("Dato recuperado de sessionStorage: " + datoRecuperado);
+        } else {
+          alert("No hay dato almacenado en sessionStorage.");
+        }
+      }
+    </script>
+
+    <h2>Operación Asincrónica</h2>
+
+    <button id="ejecutarOperacion">Ejecutar Operación Asincrónica</button>
+    <div id="resultados"></div>
+
+    <h2>Solicitudes a API Falsa</h2>
+
+    <button id="solicitudGET">Realizar Solicitud GET</button>
+
+    <label for="nombreUsuario">Nombre del nuevo usuario:</label>
+    <input type="text" id="nombreUsuario" />
+    <button id="solicitudPOST">Realizar Solicitud POST</button>
+
+    <div id="users"></div>
+
+    <script src="js/changeColor.js"></script>
+    <script src="js/eventDelegation.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/asyncCall.js"></script>
+    <script src="js/fakeApiCall.js"></script>
+  </body>
+</html>
